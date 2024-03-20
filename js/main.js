@@ -7,12 +7,13 @@ const getData = async() => {
     console.log("data", data);
 }
 
+// 구글 지도 가져오기
 window.initMap = function () {
-    const map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: 37.5400456, lng: 126.9921017 },
-      zoom: 10,
+    new google.maps.Map(document.getElementById("map"), {
+        center: {lat:35.2100142 , lng:129.0688702},
+        zoom: 10
     });
-  };
+}
 
 getData();
 

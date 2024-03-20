@@ -4,16 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="style.css">
     <script src="js/main.js" type="module"></script>
+    <script defer src=""></script>
 </head>
 <body>
     <div>
         <h1>부산 맛집 리스트</h1>
     </div>
-    <div id="map"></div>
+    <div id="map" style="height: 600px; width: 400px;"></div>
 
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYICsr2tVWMiN8ARb4xYrQqEhbyZpmrLQ&callback=console.debug&libraries=maps,marker&v=beta">
-    </script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYICsr2tVWMiN8ARb4xYrQqEhbyZpmrLQ&callback=initMap&v=weekly&solution_channel=GMP_CCS_simpleclickevents_v1"
+      defer
+    ></script>
+   
 </body>
 </html>
