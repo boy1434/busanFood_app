@@ -5,8 +5,7 @@
 }
 
 body {
-    width: 100%;
-    height: 100svh;
+    margin-right: 0%;
 }
 
 .map-area{
@@ -70,6 +69,7 @@ body {
     position: relative;
     bottom:0;
     width: 100%;
+    height: auto;
 }
 
 @media screen {

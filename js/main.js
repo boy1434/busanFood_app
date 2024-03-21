@@ -1,17 +1,42 @@
 const API_KEY = "GWdZRWB1svhuRRxeQ3bBMiwlBqAQrkKTw%2BoEd0Zbjxxpaw9mykRs0NgETMIThRx9YOlYH33oHz1QkZm9GvfP%2FQ%3D%3D"
 let foodList = [];
+
+let url = new URL(`http://apis.data.go.kr/6260000/FoodService/getFoodKr?ServiceKey=${API_KEY}&resultType=json`)
 // 공공데이터 api 가져오기
-const getData = async() => {
-    const url = `http://apis.data.go.kr/6260000/FoodService/getFoodKr?ServiceKey=${API_KEY}&resultType=json&numOfRows=7&pageNo=5`;
+// const getData = async() => {
+//     const url = `http://apis.data.go.kr/6260000/FoodService/getFoodKr?ServiceKey=${API_KEY}&resultType=json&numOfRows=7&pageNo=5`;
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     console.log("data", data);
+//     const locations = data.getFoodKr.item.map((spot) =>[
+//         spot.MAIN_TITLE,spot.LAT, spot.LNG
+//     ]);
+//     console.log("locations",locations);
+
+//     getFood();
+//     drawMap(locations);
+// }
+
+const getFood = async() => {
     const response = await fetch(url);
     const data = await response.json();
-    console.log("data", data);
-    const locations = data.getFoodKr.item.map((spot) =>[
-        spot.MAIN_TITLE,spot.LAT, spot.LNG
-    ]);
-    console.log("locations",locations);
+    foodList = data.getFoodKr.item;
+    console.log("겟푸드",foodList);
+}
 
-    drawMap(locations);
+const render = async() => {
+    const response = await fetch(url);
+    const data = await response.json();
+    foodList = data.getFoodKr.item;
+    let foodHTML = ``;
+    foodHTML =  foodList.map((item) => `
+        <div>
+            <h1>${item.MAIN_TITLE}</h1>
+        </div>
+    `)
+    
+    document.getElementById("food-board").innerHTML = foodHTML;
+    getFood();
 }
 
 // 구글 지도 가져오기
@@ -45,17 +70,9 @@ function drawMap(locations) {
     }
   }
 
-// const render = async() => {
-//     const url = `http://apis.data.go.kr/6260000/FoodService/getFoodKr?ServiceKey=${API_KEY}&resultType=json&numOfRows=7&pageNo=1`;
-//     const response = await fetch(url);
-//     const data = await response.json();
-//     let foodServiceHTML = ``;
-//     foodServiceHTML =foodList.map(food => `
-//         <h1>${data.MAIN_TITLE}</h1>
-//     `)
-//     document.getElementById("food-board").innerHTML = foodServiceHTML;
-// }
 
-getData();
-//render();
+
+getFood();
+
+render();
 
