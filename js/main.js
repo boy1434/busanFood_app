@@ -1,7 +1,7 @@
 const API_KEY = "GWdZRWB1svhuRRxeQ3bBMiwlBqAQrkKTw%2BoEd0Zbjxxpaw9mykRs0NgETMIThRx9YOlYH33oHz1QkZm9GvfP%2FQ%3D%3D"
 let foodList = [];
 
-let url = new URL(`http://apis.data.go.kr/6260000/FoodService/getFoodKr?ServiceKey=${API_KEY}&resultType=json`)
+let url = new URL(` http://apis.data.go.kr/6260000/FoodService/getFoodKr?ServiceKey=${API_KEY}&resultType=json`)
 // 공공데이터 api 가져오기
 // const getData = async() => {
 //     const url = `http://apis.data.go.kr/6260000/FoodService/getFoodKr?ServiceKey=${API_KEY}&resultType=json&numOfRows=7&pageNo=5`;
@@ -30,8 +30,12 @@ const render = async() => {
     foodList = data.getFoodKr.item;
     let foodHTML = ``;
     foodHTML =  foodList.map((item) => `
-        <div>
-            <h1>${item.MAIN_TITLE}</h1>
+        <div class="food_info">
+            <h2>${item.MAIN_TITLE}</h2>
+            <img src=${item.MAIN_IMG_NORMAL}>
+            <p>${item.GUGUN_NM}</p>
+            <p>영업시간 : ${item.USAGE_DAY_WEEK_AND_TIME}</p>
+            <P>전화번호 : ${item.CNTCT_TEL}</P>
         </div>
     `)
     

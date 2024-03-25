@@ -81,4 +81,11 @@ body {
     height:  700px;
 }
 
+.food_info > img {
+    width: 400px;
+}
+
+.food-info{
+    border-bottom: 1px solid black;
+}
 
