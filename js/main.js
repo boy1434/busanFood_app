@@ -28,16 +28,23 @@ const render = async() => {
     const response = await fetch(url);
     const data = await response.json();
     foodList = data.getFoodKr.item;
+    
     let foodHTML = ``;
     foodHTML =  foodList.map((item) => `
-        <div class="food_info">
-            <h2>${item.MAIN_TITLE}</h2>
-            <img src=${item.MAIN_IMG_NORMAL}>
-            <p>${item.GUGUN_NM}</p>
-            <p>영업시간 : ${item.USAGE_DAY_WEEK_AND_TIME}</p>
-            <P>전화번호 : ${item.CNTCT_TEL}</P>
-        </div>
-    `)
+    <div class="card" style="width: 100%;">
+    <img src="${item.MAIN_IMG_NORMAL}" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title">${item.TITLE}</h5>
+      <p class="card-text">위치: ${item.ADDR1}</p>
+      <p class="card-text">연락처: ${item.CNTCT_TEL}</p>
+      <p class="card-text">운영 및 시간: ${item.USAGE_DAY_WEEK_AND_TIME}</p>
+      <p class="card-text">대표 메뉴: ${item.RPRSNTV_MENU}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+
+  
+    `).join('');
     
     document.getElementById("food-board").innerHTML = foodHTML;
     getFood();
